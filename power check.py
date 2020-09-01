@@ -23,3 +23,17 @@ Output:
 
 Explanation: 8 is a power of 2, but 3 is not a power of 1.
 """
+
+def powercheck(a,b):
+    if b%a==0:
+        for i in range(1,b//a+1):
+            if a**i==b:
+                return True
+    return False
+t=int(input())
+for i in range(t):
+    x,y=map(int,input().split())
+    if powercheck(x,y):
+        print("1")
+    else:
+        print("0")
