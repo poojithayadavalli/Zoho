@@ -10,12 +10,36 @@ Constraints:
 Example 1:
 
 Input:
-N = 5
-A[] = {1,0,1,1,0}
-Output: 0 0 1 1 1
+5
+1 0 1 1 0
+Output:
+0 0 1 1 1
 Example 2:
 
 Input:
-N = 10
-A[] = {1,0,1,1,1,1,1,0,0,0}
-Output: 0 0 0 0 1 1 1 1 1 1
+10
+1 0 1 1 1 1 1 0 0 0
+Output: 
+0 0 0 0 1 1 1 1 1 1
+Input:
+1
+5
+1 0 0 0 1
+Output:
+0 0 0 1 1 
+"""
+import math
+def sortBinaryArray (arr, n):
+    arr.sort()
+    return arr
+def main():
+        T=int(input())
+        while(T>0):
+            n=int(input())
+            arr=[int(x) for x in input().strip().split()]
+            res = sortBinaryArray (arr, n)
+            for i in range (n):
+                print (res[i], end = " ")
+            print ("")
+            T-=1
+main()
