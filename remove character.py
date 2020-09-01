@@ -1,5 +1,7 @@
 """
-Given two strings s1 and s2, remove those characters from first string which are present in second string. Both the strings are different and contain only lowercase characters.
+Given two strings s1 and s2, remove those characters from first string which are present in second string.
+
+Both the strings are different and contain only lowercase characters.
 
 Input:
 
@@ -29,6 +31,8 @@ Output:
 geeforgee
 emovecchaaefom
 """
+t=int(input())
+while t>0:
     t=t-1
     s1=input('')
     s2=input('')
@@ -36,3 +40,4 @@ emovecchaaefom
         if(s1[i] not in s2):
             print(s1[i],end='')
     print()
+
