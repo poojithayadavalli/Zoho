@@ -29,7 +29,14 @@ Output:
 
 Explanation:
 Testcase 1: Each number can be expressed as sum of different numbers less than or equal to K as 5 (3 + 2), 8 (3 + 3 + 2), 10 (3 + 3 + 3 + 1), 13 (3 + 3 + 3 + 3 + 1). So, the sum of count of each element is 14.
+Input:
+1
+3 2
+3 4 5
+Output:
+7
 """
+import math
 t=int(input())
 while(t>0):
     t=t-1
@@ -45,3 +52,4 @@ while(t>0):
     for i in range(len(s)):
         o+=math.ceil(s[i]/k)
     print(o)
+
