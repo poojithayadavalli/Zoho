@@ -21,3 +21,20 @@ Output:
 hollo werld
 geeks for geeks
 """
+t=int(input())
+for i in range(t):
+   s=list(input())
+   v=['a','e','i','o','u']
+   l=[]
+   for i in s:
+      if i in v:
+         l.append(i)
+   l=l[::-1]
+   val=0
+   for i in range(len(s)):
+      if(s[i] in v):
+         s[i]=l[val]
+         val+=1
+   for i in s:
+      print(i,end="")
+   print()
