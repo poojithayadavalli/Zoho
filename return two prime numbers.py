@@ -30,4 +30,48 @@ Output:
 5 61
 3 5
 17 9973
+Input:
+2
+18
+19
+Output:
+5 13
+2 17
+Input:
+3
+56
+78
+68
+Output:
+3 53
+5 73
+7 61
+Input:
+2
+29
+45
+Output:
+2 43
+Input:
+1
+26
+Output:
+3 23
 """
+def prime(num):
+    i=2
+    flag=True
+    while i<=int(num/2):
+        if num%i==0:
+            flag=False
+            break
+        i+=1
+    return flag
+if __name__=='__main__':
+    t=int(input())
+    for i in range(t):
+        num=int(input())
+        for n in range(2,num):
+            if prime(n)==True and prime(num-n)==True:
+                print(n,num-n)
+                break
