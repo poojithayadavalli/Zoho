@@ -28,4 +28,38 @@ D E F
 G H I
 The possible paths which exists to reach 'I' from 'A' following above conditions are as follows:
 ABCFI, ABEHI, ADGHI, ADEFI, ADEHI, ABEFI.
+Input:
+2
+3 2
+6 5
+Output:
+3
+126
+Input:
+3
+5 3
+4 2
+3 1
+Output:
+15
+4
+1
+>>> 
+
 """
+def recur(cr,cc,r,c):
+    if(cr==r-1 and cc==c-1):
+        return 1
+    elif(cr==r-1):
+        return recur(cr,cc+1,r,c)
+    elif(cc==c-1):
+        return recur(cr+1,cc,r,c)
+    else:
+        return recur(cr+1,cc,r,c)+recur(cr,cc+1,r,c)
+    
+n=int(input())
+
+for i in range(n):
+    r,c = map(int,input().split(' '))
+    paths = recur(0,0,r,c)
+    print(paths)
