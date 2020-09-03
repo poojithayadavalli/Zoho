@@ -2,7 +2,9 @@
 Given two arrays A and B of positive integers. Your task is to find numbers which are present in the first array, but not present in the second array.
 
 Input:
-The first line of input contains an integer T denoting the number of test cases. Each test case contains space separated integers N and M which denotes the number of elements in the array A and B. Next two line contains space separated array elements.
+The first line of input contains an integer T denoting the number of test cases. 
+Each test case contains space separated integers N and M which denotes the number of elements in the array A and B.
+Next two line contains space separated array elements.
 
 Output:
 Print space separated numbers present in the first array but not in the second.
@@ -28,4 +30,24 @@ Output:
 
 Explanation:
 Testcase 1: 4 and 10 are present in first array while not in second array.
+Input:
+1
+4 3
+1 2 3 4
+1 2 4
+Output:
+3
 """
+t=int(input())
+for i in range(t):
+    input()
+    a=list(map(int,input().split()))
+    b=list(map(int,input().split()))
+    d={}
+    for j in b:
+        d[j]=j
+    for j in a:
+        if j not in d:
+            print(j,end=" ")
+    print()
+
