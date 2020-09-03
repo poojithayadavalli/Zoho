@@ -1,5 +1,7 @@
 """
-Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. See following examples for more details.
+Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. 
+
+See following examples for more details.
 
 Consider the following dictionary
 { i, like, sam, sung, samsung, mobile, ice,
@@ -25,14 +27,31 @@ Print 1 is possible to break words, else print 0.
 
 Example:
 Input:
-2
 12
 i like sam sung samsung mobile ice cream icecream man go mango
 ilike
+Output:
+1
 12
 i like sam sung samsung mobile ice cream icecream man go mango
 idontlike
 Output:
-1
 0
 """
+while True:
+    n1=int(input())
+    arr=list(input().split())
+    s=input()
+    n=len(s)
+    dp=[False]*(n+1)
+    dp[0]=True
+    for i in range(n):
+        for j in range(i,n):
+            if(dp[i]) and (s[i:j+1] in arr):
+                dp[j+1]=True
+    if dp[-1]:
+        print(1)
+        break
+    else:
+        print(0)
+        break
