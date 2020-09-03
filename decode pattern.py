@@ -28,4 +28,52 @@ Input:
 Output:
 11
 21
+Input:
+2
+5
+7
+Output:
+111221
+13112221
+Input:
+2
+6
+8
+Output:
+312211
+1113213211
 """
+t=int(input())
+for i in range(t):
+    n=int(input())
+    l=[1,1]
+    r=[]
+    cnt=1
+    if(n==1):
+        print("1")
+    elif(n==2):
+        print("11")
+    else:
+        for j in range(3,n+1):
+            for i in range(len(l)-1):
+                if(l[i]==l[i+1]):
+                    cnt+=1
+                    if(i==len(l)-2):
+                        r.append(cnt)
+                        r.append(l[i])
+                        cnt=1
+                else:
+                    r.append(cnt)
+                    r.append(l[i])
+                    cnt=1
+                    if(i==len(l)-2):
+                        r.append(cnt)
+                        r.append(l[i+1])
+                        cnt=1
+                    
+            l=r
+            r=[]
+        
+        for i in range(len(l)):
+            print(l[i],end="")
+        print()
