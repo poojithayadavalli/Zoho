@@ -50,3 +50,120 @@ Constraints:
 1 <= Q <= 100000
 1 <= x, y <= 1000
 """
+import java.util.*;
+import java.lang.*;
+
+  public class LRUDesign {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader read =
+            new BufferedReader(new InputStreamReader(System.in));
+
+        int t = Integer.parseInt(read.readLine());
+
+        while (t-- > 0) {
+
+            int capacity = Integer.parseInt(read.readLine());
+            int queries = Integer.parseInt(read.readLine());
+            LRUCache cache = new LRUCache(capacity);
+            String str[] = read.readLine().trim().split(" ");
+            int len = str.length;
+            int itr = 0;
+
+            for (int i = 0; (i < queries) && (itr < len); i++) {
+                String queryType = str[itr++];
+                if (queryType.equals("SET")) {
+                    int key = Integer.parseInt(str[itr++]);
+                    int value = Integer.parseInt(str[itr++]);
+                    cache.set(key, value);
+                }
+                if (queryType.equals("GET")) {
+                    int key = Integer.parseInt(str[itr++]);
+                    System.out.print(cache.get(key) + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+
+// design the class in the most optimal way
+class Node{
+    int key,value;
+    Node next,prev;
+    Node(int key,int value){
+        this.key=key;
+        this.value=value;
+    }
+}
+class LRUCache
+{
+    private static HashMap<Integer,Node> hm;
+    private static Node head,tail;
+    private static int capacity,count;
+    LRUCache(int cap)
+    {
+        hm=new HashMap<>();
+        head=new Node(0,0);
+        tail=new Node(0,0);
+        capacity=cap;
+        count=0;
+        head.next=tail;
+        tail.prev=head;
+        head.prev=null;
+        tail.next=null;
+    }
+
+    // This method works in O(1)
+    public static int get(int key)
+    {
+        if(hm.get(key)!=null){
+            Node node=hm.get(key);
+            int result=node.value;
+            deleteNode(node);
+            addtohead(node);
+            return result;
+        }
+        return -1;
+    }
+    
+    public static void deleteNode(Node node){
+        node.prev.next=node.next;
+        node.next.prev=node.prev;
+    }
+    
+    public static void addtohead(Node node){
+        node.next=head.next;
+        node.next.prev=node;
+        head.next=node;
+        node.prev=head;
+    }
+
+    // This method works in O(1)
+    public static void set(int key, int value)
+    {
+        if(hm.get(key)!=null){
+            Node node=hm.get(key);
+            node.value=value;
+            hm.put(key,node);
+            deleteNode(node);
+            addtohead(node);
+        }
+        else{
+            Node node=new Node(key,value);
+            hm.put(key,node);
+            if(count<capacity){
+                addtohead(node);
+                count++;
+            }
+            else{
+                hm.remove(tail.prev.key);
+                deleteNode(tail.prev);
+                addtohead(node);
+            }
+        }
+    }
+}
