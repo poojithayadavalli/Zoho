@@ -1,17 +1,23 @@
 """
-Given a set of N jobs where each job i has a deadline and profit associated to it. Each job takes 1 unit of time to complete and only one job can be scheduled at a time. We earn the profit if and only if the job is completed by its deadline. The task is to find the maximum profit and the number of jobs done.
+Given a set of N jobs where each job i has a deadline and profit associated to it. 
 
-Input:
-The first line of input contains an integer T denoting the number of test cases. In each test case, first line consists of an integer N denoting the number of jobs. Second line will be of the format A1, B1, C1, A2, B2, C2..... AN, BN, CN, where Ai, Bi and Ci denote the ID, deadline and profit from the ith job respectively.
+Each job takes 1 unit of time to complete and only one job can be scheduled at a time.
 
-Output:
-Output the number of jobs done and the maximum profit seperated by a space in a different line for each test case.
-
+We earn the profit if and only if the job is completed by its deadline. The task is to find the maximum profit and the number of jobs done.
 Constraints:
 1 <= T <= 100
 1 <= N <= 100
 1 <= Deadline <= 100
 1 <= Profit <= 500
+
+Input:
+The first line of input contains an integer T denoting the number of test cases.
+In each test case, first line consists of an integer N denoting the number of jobs. 
+Second line will be of the format A1, B1, C1, A2, B2, C2..... AN, BN, CN, where Ai, Bi and Ci denote the ID, deadline and profit from the ith job respectively.
+
+Output:
+Output the number of jobs done and the maximum profit seperated by a space in a different line for each test case.
+
 
 Example:
 Input:
@@ -29,3 +35,24 @@ Explanation:
 Test Case 1: You can do job 3 followed by the job 1. The overall profit = 40 + 20 = 60
 Test Case 2: You can do job 1 followed by the job 3. The overall profit = 100 + 27 = 127
 """
+z=0
+t=int(input())
+while z<t :
+    n=int(input())
+    l=list(map(int,input().split()))
+    d=[[0,0]]*n
+    for i in range(n) :
+        d[i]=[l[3*i+2],l[3*i+1]]
+    d.sort()
+    #print(d)
+    profit=0
+    count=0
+    slot=[1]*101
+    slot[0]=0
+    for i in range(n-1,-1,-1) :
+        if sum(slot[:d[i][1]+1])>=1 :
+            profit=profit+d[i][0]
+            count=count+1
+            slot[len(slot[:d[i][1]+1]) - 1 - slot[:d[i][1]+1][::-1].index(1)]=0
+    print(count,profit)
+    z=z+1
