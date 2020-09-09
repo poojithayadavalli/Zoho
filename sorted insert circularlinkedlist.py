@@ -26,3 +26,71 @@ Expected Auxiliary Space: O(1)
 Constraints:
 0 <= N <= 200
 """
+def sortedInsert(head,data):
+    temp=head
+    node=Node(data)
+    if temp is None:
+        node.next=node
+        head=node
+    
+    elif temp.data>=data:
+        while temp.next != head : 
+            temp = temp.next
+        temp.next = node 
+        node.next = head 
+        head = node
+        
+    else:
+        while(temp.next!=head and temp.next.data<data):
+            temp=temp.next
+        node.next=temp.next
+        temp.next=node
+    return head
+
+class Node:
+    def __init__(self, data): 
+        self.data = data 
+        self.next = None
+  
+class LinkedList:
+    def __init__(self): 
+        self.head = None
+        self.last=None 
+    def push(self, data):
+        if not self.head:
+            nn=Node(data)
+            self.head=nn
+            self.last=nn
+            nn.next=nn
+            return
+        nn=Node(data)
+        nn.next=self.head
+        self.last.next=nn
+        self.last=nn
+
+def printList(head):
+    if not head:
+        return
+    temp = head 
+    print (temp.data,end=' ') 
+    temp = temp.next
+    while(temp != head): 
+        print (temp.data,end=' ') 
+        temp = temp.next
+  
+    
+if __name__ =='__main__':
+    t=int(input())
+    for tcs in range(t):
+        n=int(input())
+        arr=[int(x) for x in input().split()]
+        data=int(input())
+
+        cll=LinkedList()
+        for e in arr:
+            cll.push(e)
+            
+        reshead=sortedInsert(cll.head,data)
+        printList(reshead)
+        print()
+
