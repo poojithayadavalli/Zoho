@@ -20,3 +20,27 @@ Output:
 3
 -1
 """
+def maxDistance(s):
+    freq = {}
+    Max = -1
+    for i in range(len(s)):
+        if s[i] not in freq:
+            freq[s[i]] = (i,-1)
+        else:
+            t = freq[s[i]]
+            freq[s[i]] = (t[0],i-t[0]-1)
+            
+        t = freq[s[i]]
+        Max = max(Max,t[1])
+        
+    return Max
+            
+
+t = int(input())
+
+while t > 0:
+    
+    s = input()
+    print(maxDistance(s))
+    t -= 1
+    
