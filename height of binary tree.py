@@ -1,7 +1,7 @@
 """
 Given a binary tree, find its height.
 
-​​Example 1:
+Example :
 
 Input:
       1
@@ -27,3 +27,29 @@ Constraints:
 1 <= Number of nodes <= 105
 1 <= Data of a node <= 105
 """
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+def height(root):
+    if(root is None):
+        return 0
+    else:
+        output = max(height(root.left),height(root.right)) + 1
+        return output
+def insertLevelOrder(arr, root, i, n): 
+    if i < n: 
+        temp = Node(arr[i])  
+        root = temp  
+        root.left = insertLevelOrder(arr, root.left,2 * i + 1, n) 
+        root.right = insertLevelOrder(arr, root.right,2 * i + 2, n) 
+    return root
+
+x=list(map(str,input().split()))
+root=None
+root=insertLevelOrder(x,root,0,len(x))
+print(height(root))
+    
+    
+    
