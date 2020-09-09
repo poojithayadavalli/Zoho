@@ -8,7 +8,9 @@ If given count is 0, then given character doesn’t matter, just print the whole
 
 Input:
 
-First line consists of T test cases. First line of every test case consists of String S.Second line of every test case consists of a character.Third line of every test case consists of an integer.
+First line consists of T test cases. First line of every test case consists of String S.
+Second line of every test case consists of a character.
+Third line of every test case consists of an integer.
 
 
 Output:
@@ -29,7 +31,7 @@ Input:
 2
 Thisisdemostring
 i    
-3​
+3
 geeksforgeeks
 e
 2
@@ -38,3 +40,22 @@ Output:
 ng
 ksforgeeks
 """
+t=int(input())
+for _ in range(t):
+    s = input()
+    k = input()
+    n = int(input())
+    z = 0
+    l = 0
+    for i in range(len(s)):
+        if(k==s[i]):
+            z+=1
+        if(z==n):
+            l+=1
+            break
+    if(n==0):
+        print(s)
+    elif(s[i+1:]!='' and l==1):
+        print(s[i+1:])
+    else:
+        print('Empty string')
