@@ -25,3 +25,27 @@ Expected Auxiliary Space: O(1)
 Constraints:
 1<=length of str<=100
 """
+
+def encode(arr):
+    encoded_message = "" 
+    i = 0
+   
+    while (i <= len(arr)-1): 
+        count = 1
+        ch = arr[i] 
+        j = i 
+        while (j < len(arr)-1): 
+            if (arr[j] == arr[j+1]): 
+                count = count+1
+                j = j+1
+            else: 
+                break
+        encoded_message=encoded_message+ch+str(count) 
+        i = j+1
+    return encoded_message 
+        
+if __name__=='__main__':
+    t=int(input())
+    for i in range(t):
+        arr=input().strip()
+        print (encode(arr))
